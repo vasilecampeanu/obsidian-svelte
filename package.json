@@ -1,7 +1,12 @@
 {
     "name": "obsidian-svelte",
     "version": "1.0.0",
-	"scripts": {
-		"version": "node version-bump.mjs && git add manifest.json versions.json"
-	}
+    "scripts": {
+        "dev": "sass --watch src/scss:. --style=expanded --source-map",
+        "build": "sass src/scss:. --style=compressed --no-source-map",
+        "version": "npm run build && node version-bump.mjs && git add manifest.json versions.json theme.css"
+    },
+    "devDependencies": {
+        "sass": "^1.85.0"
+    }
 }

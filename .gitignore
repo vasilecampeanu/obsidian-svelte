@@ -8,8 +8,11 @@
 # npm
 node_modules
 
-# Exclude sourcemaps
-*.map
+# SCSS compilation
+*.css.map
+
+# Keep compiled theme.css (required for Obsidian)
+!theme.css
 
 # Exclude macOS Finder (System Explorer) View States
 .DS_Store

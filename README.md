@@ -1,5 +1,84 @@
 This is a sample theme for Obsidian ([https://obsidian.md](https://obsidian.md/)).
 
+## Development
+
+### Prerequisites
+
+- Node.js 18+ and npm
+- Obsidian (for testing the theme)
+
+### Setup
+
+1. Clone the repository
+2. Install dependencies:
+   ```bash
+   npm install
+   ```
+3. Build the theme:
+   ```bash
+   npm run build
+   ```
+
+### Development Workflow
+
+1. **Start the development watcher:**
+   ```bash
+   npm run dev
+   ```
+   This watches `src/scss/` for changes and automatically compiles to `theme.css` with source maps for debugging.
+
+2. **Install Hot-Reload plugin in Obsidian:**
+   - Open Obsidian Settings → Community Plugins
+   - Search for and install "Hot-Reload"
+   - Enable the plugin
+
+3. **Edit and iterate:**
+   - Make changes to SCSS files in `src/scss/`
+   - Files automatically compile to `theme.css`
+   - Obsidian automatically reloads the theme (via Hot-Reload plugin)
+
+### SCSS Structure
+
+The theme uses SCSS for development. The entry point is `src/scss/index.scss`.
+
+**Suggested organization** (customize as you prefer):
+```
+src/scss/
+├── index.scss              # Main entry point
+├── _variables.scss         # SCSS variables (compile-time constants)
+├── _base.scss              # CSS variables, resets, base styles
+├── _typography.scss        # Font settings, headings, text
+├── _editor.scss            # Editor-specific styles
+├── _sidebars.scss          # Left/right sidebar panels
+├── _modals.scss            # Dialogs, settings, command palette
+└── _mobile.scss            # Mobile-specific overrides
+```
+
+Use `@import` or `@use` statements in `index.scss` to include your partials.
+
+### Release Workflow
+
+1. **Update version and build:**
+   ```bash
+   npm version patch  # or minor, major
+   ```
+   This automatically:
+   - Builds the production CSS (compressed, no source maps)
+   - Updates `manifest.json` and `versions.json`
+   - Stages changed files for commit
+
+2. **Commit and tag:**
+   ```bash
+   git commit -m "Release v1.0.1"
+   git tag 1.0.1
+   git push origin main --tags
+   ```
+
+3. **GitHub Actions automatically:**
+   - Compiles SCSS to CSS
+   - Creates a GitHub Release
+   - Uploads `manifest.json` and `theme.css`
+
 ## First Time publishing a theme?
 
 ### Quick start
